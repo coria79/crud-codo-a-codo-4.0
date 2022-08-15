@@ -1,0 +1,39 @@
+
+    {% include 'header.html' %}
+
+    <br>
+    <a href="{{url_for('create')}}" class="btn btn-success"> Create A New Beatle </a>
+    <br> <br>
+
+
+    <table class="table table-light">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{employee[0]}}</td>
+                <td>
+                    <img class="img-thumbnail" width="75" height="75" src="uploads/{{employee[3]}}" alt="">
+                </td>
+
+                <td>{{employee[1]}}</td>
+                <td>{{employee[2]}}</td>
+
+                <td><a class="btn btn-warning" href="/edit/{{employee[0]}}">Edit</a>
+                     |
+                    <a class="btn btn-danger" onclick="return confirm('Do You Really Want To Delete A Beatle?')" href="/destroy/{{employee[0]}}"> Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% include 'footer.html' %}
